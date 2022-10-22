@@ -9,10 +9,9 @@ use Exception;
 class MyFirstController extends Controller
 {
 
-    public function myControlerFunction($id = null){
+/*     public function myControlerFunction($id = null){
         echo 'Hola '. $id;
-    }
-
+    } */
 
     public function contactPage(){
         return view('/contact');

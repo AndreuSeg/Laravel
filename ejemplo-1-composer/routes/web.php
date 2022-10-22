@@ -45,6 +45,13 @@ use Psy\Command\WhereamiCommand;
 ); */
 
 
+/* Route::get('/my-example', function(){
+    echo 'Hola';
+})->name('miIndex'); */
+
+/* Route::view('myRoutename', 'routename'); */
+
+
 Route::view('/', 'home');
 Route::get('/contact', [MyFirstController::class, 'contactPage']);
 Route::post('/contact', [MyFirstController::class, 'processContact']);
