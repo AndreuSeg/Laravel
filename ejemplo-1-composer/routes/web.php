@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MyFirstController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'pagina');
+Route::view('/', 'home');
+Route::get('/contact', [MyFirstController::class, 'contactPage']);
+Route::post('/contact', [MyFirstController::class, 'processContact']);
+Route::put('/contact', [MyFirstController::class, 'processContactPut']);
+
+
+// Route::put('/contact', [MyFirstController::class, 'processContact']);
+// Route::patch('/contact', [MyFirstController::class, 'processContact']);
+// Route::delete('/contact', [MyFirstController::class, 'processContact']);
+// Route::head('/contact', [MyFirstController::class, 'processContact']);
+// Route::options('/contact', [MyFirstController::class, 'processContact']);
