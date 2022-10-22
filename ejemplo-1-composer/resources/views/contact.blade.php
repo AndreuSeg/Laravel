@@ -7,10 +7,9 @@
 </head>
 <body>
     <h1>Pagina de contacto</h1>
-    <form action="/contact" autocomplete="off">
-        @method('POST')
-        {{--
+    <form action="/contact" method="POST" autocomplete="off">
         @method('PUT')
+        {{--
         si quieres usar el metodo put la etiueta form tienes que usar el metodo POST
         --}}
         @csrf
