@@ -23,7 +23,6 @@ use Psy\Command\WhereamiCommand;
     return $post;
 }); */
 
-
 /* Route::get('/{category}/{slug}/{uuid}', function ($category = 'a', $slug = 'post') {
     echo $category . '<br>', $slug;
 })->whereAlpha('category')->whereAlphaNumeric('slug')->whereUuid('uuid'); */
@@ -44,22 +43,34 @@ use Psy\Command\WhereamiCommand;
     ['slug2'=>'[a-z]+']
 ); */
 
-
 /* Route::get('/my-example', function(){
     echo 'Hola';
 })->name('miIndex'); */
 
 /* Route::view('myRoutename', 'routename'); */
 
+Route::middleware('example.middleware:admin')->group(function(){
+    Route::prefix('/post')->name('post.')->group(function(){
+        Route::get('/', function(){
+            echo 'Hola que tal?';
+        });
+    });
+});
+
+Route::middleware('example.middleware:user')->group(function(){
+    Route::prefix('/post2')->name('post2.')->group(function(){
+        Route::get('/', function(){
+            echo 'Hola que tal?';
+        });
+    });
+});
+
 Route::get('/login', function(){
     echo 'Esta es la url de login';
 })->name('login');
 
-Route::middleware('example.middleware')->group(function(){
-    Route::view('/error', 'error');
-});
-
 Route::view('/', 'home');
+
 Route::get('/contact', [MyFirstController::class, 'contactPage']);
 Route::post('/contact', [MyFirstController::class, 'processContact']);
 Route::put('/contact', [MyFirstController::class, 'processContactPut']);

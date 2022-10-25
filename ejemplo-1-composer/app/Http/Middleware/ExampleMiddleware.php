@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ExampleMiddleware
 {
@@ -15,17 +16,19 @@ class ExampleMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $role = 'user')
     {
 
-        $haveIdParamsInGet = $request->input('id');
+        $auxrole = 2;
+
+        $idRole = ($role == 'user')?1:2;
         $user = Auth::user();
-/*         if ($haveIdParamsInGet) {
-            return $next($request);
-        } */
-        if (Auth::check() && Auth::id() == 1 && $user->id_role == 2) {
+
+        $roleOfTheUser = $user->$idRole;
+
+        if ($roleOfTheUser == $idRole) {
             return $next($request);
         }
-        return abort(403);
+        return new Response('Los usuarios de tipo '. $role. ' no pueden acceder a esta seccion');
     }
 }
