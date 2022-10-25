@@ -51,12 +51,18 @@ use Psy\Command\WhereamiCommand;
 
 /* Route::view('myRoutename', 'routename'); */
 
+Route::get('/login', function(){
+    echo 'Esta es la url de login';
+})->name('login');
+
+Route::middleware('example.middleware')->group(function(){
+    Route::view('/error', 'error');
+});
 
 Route::view('/', 'home');
 Route::get('/contact', [MyFirstController::class, 'contactPage']);
 Route::post('/contact', [MyFirstController::class, 'processContact']);
 Route::put('/contact', [MyFirstController::class, 'processContactPut']);
-
 
 // Route::put('/contact', [MyFirstController::class, 'processContact']);
 // Route::patch('/contact', [MyFirstController::class, 'processContact']);
