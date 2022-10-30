@@ -1,29 +1,3 @@
-@php
-    $concepts = [
-        [
-            'concept' => 'Curso de laravel9',
-            'price' => 20,
-            'currency' => 'USD',
-            'taxes' => 10,
-            'discount' => 0
-        ],
-        [
-            'concept' => 'Licencia Sublime',
-            'price' => 70,
-            'currency' => 'USD',
-            'taxes' => 21,
-            'discount' => 5
-        ],
-        [
-            'concept' => 'Laptop Macbook pro',
-            'price' => 4300,
-            'currency' => 'USD',
-            'taxes' => 21,
-            'discount' => 0
-        ]
-    ]
-@endphp
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,7 +32,12 @@
             @php
                 foreach ($concepts as $c) {
                     echo '<tr>';
-                        echo '<td>'. $c['concept'] .'</td>';
+                        if (strlen($c['concept']) < $maxChars) {
+                            echo '<td>'. $c['concept'] .'</td>';
+                        }
+                        else {
+                            echo '<td>'. substr($c['concept'], 0, $maxChars) .'</td>';
+                        }
                         echo '<td>'. $c['price'] .'</td>';
                         echo '<td>'. $c['currency'] .'</td>';
                         echo '<td>'. $c['taxes'] .'</td>';
@@ -75,7 +54,6 @@
             <tr>
                 <th>Concepto</th>
                 <th>Precio</th>
-                <th>Divisa</th>
                 <th>Taxas</th>
                 <th>Descuento</th>
             </tr>
@@ -83,13 +61,82 @@
         <tbody>
             @foreach ($concepts as $c)
                 <tr>
-                    <td>{{ $c['concept']}}</td>
-                    <td>{{ $c['price']}}</td>
-                    <td>{{ $c['currency']}}</td>
-                    <td>{{ $c['taxes']}}</td>
-                    <td>{{ $c['discount']}}</td>
+                    <td>
+                        @if (strlen($c['concept']) < $maxChars)
+                            {{ $c['concept'] }}
+                        @else
+                            {{ substr($c['concept'], 0, $maxChars) }}
+                        @endif
+                    </td>
+                    <td>{{ $c['price'] }} {{ $c['currency'] }}</td>
+                    <td>{{ $c['taxes'] }}</td>
+                    <td>{{ $c['discount'] }}</td>
                 </tr>
             @endforeach
         </tbody>
+    </table>
+    <p>_______________</p>
+    <h4>Ejemplo 3 con blade</h4>
+    @guest {{-- Solo si no estas autenticado podras ver la tabla --}}
+        <table border="1" cellpadding="5" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Precio</th>
+                    <th>Taxas</th>
+                    <th>Descuento</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($concepts as $c)
+                    <tr>
+                        <td>
+                            @if (strlen($c['concept']) < $maxChars)
+                                {{ $c['concept'] }}
+                            @else
+                                {{ substr($c['concept'], 0, $maxChars) }}
+                            @endif
+                        </td>
+                        <td>{{ $c['price'] }} {{ $c['currency'] }}</td>
+                        <td>{{ $c['taxes'] }}</td>
+                        <td>{{ $c['discount'] }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endguest
+    <p>_______________</p>
+    <h4>Ejemplo 4 con blade</h4>
+    @if ($year == date('Y'))
+        <table border="1" cellpadding="5" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Precio</th>
+                    <th>Taxas</th>
+                    <th>Descuento</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($concepts as $c)
+                    <tr>
+                        <td>
+                            @if (strlen($c['concept']) < $maxChars)
+                                {{ $c['concept'] }}
+                            @else
+                                {{ substr($c['concept'], 0, $maxChars) }}
+                            @endif
+                        </td>
+                        <td>{{ $c['price'] }} {{ $c['currency'] }}</td>
+                        <td>{{ $c['taxes'] }}</td>
+                        <td>{{ $c['discount'] }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
 </body>
+    <script>
+        var concepts = JSON.parse('{!! $jsonConcepts !!}');
+    </script>
 </html>

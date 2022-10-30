@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\MyFirstController;
+use App\Http\Controllers\WebsiteController;
+use Illuminate\Support\Facades\Route;
 use Psy\Command\WhereamiCommand;
 
 /*
@@ -16,9 +18,16 @@ use Psy\Command\WhereamiCommand;
 */
 
 Route::view('/', 'home')->name('home');
-Route::view('/contact', 'contact')->name('contact.form');
-// Route::get('/contact', [MyFirstController::class, 'contactPage'])->name('contact.form');
+Route::get('/contact', [MyFirstController::class, 'contactPage'])->name('contact.form');
 Route::middleware('validate')->post('/contact', [MyFirstController::class, 'processContact'])->name('contact.process');
 Route::view('/success', 'success')->name('success');
+Route::get('/introduccion-a-blade', [IntroductionController::class, 'index'])->name('introduccion');
 
-Route::view('/introduccion-a-blade', 'introduccion')->name('introduccion');
+
+Route::name('website.')->prefix('/website')->group(function(){
+    Route::get('home', [WebsiteController::class, 'home'])->name('home');
+    Route::post('personalize', [WebsiteController::class, 'personalize'])->name('personalize');
+    Route::get('who-we-are', [WebsiteController::class, 'who'])->name('who');
+    Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
+    Route::post('contact', [WebsiteController::class, 'sendContact'])->name('sendContact');
+});

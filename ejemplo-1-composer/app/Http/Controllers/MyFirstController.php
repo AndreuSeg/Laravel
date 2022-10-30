@@ -9,10 +9,10 @@ use Exception;
 class MyFirstController extends Controller
 {
 
-/*     public function contactPage(){
+    public function contactPage(){
         // Devuelves la vista de la pagina de contacto
         return view('contact');
-    } */
+    }
 
     public function processContact(Request $request){
         // Obtienes las variables del formulario de contacto
