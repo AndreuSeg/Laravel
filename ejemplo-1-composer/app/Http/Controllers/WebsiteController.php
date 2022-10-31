@@ -8,47 +8,36 @@ use Session;
 class WebsiteController extends Controller
 {
 
-    public function home() {
-        $date = date('d/m/y');
-        $time = date('h:i');
-
-        $section = 'home';
+    public function section($section) {
 
         $user = Session::get('name', 'usuario');
+        $data = ['user' => $user, 'section' => $section];
 
-        return view('website.home', [
-            'section' => $section,
-            'date' => $date,
-            'time' => $time,
-            'user' => $user
-        ]);
+        switch ($section) {
+            case 'home';
+                $date = date('d/m/y');
+                $time = date('h:i');
+
+                $data['date'] = $date;
+                $data['time'] = $time;
+            break;
+            case 'who-we-are';
+                $name = 'Andreu';
+                $profession = 'Dev';
+                $age = 19;
+
+                $data['name'] = $name;
+                $data['age'] = $age;
+                $data['profession'] = $profession;
+            break;
+        }
+        return view('website.'. $section, $data);
     }
 
     public function personalize(Request $request) {
         $name = $request->input('name');
         Session::put('name', $name);
         return redirect()->back();
-    }
-
-    public function who() {
-        $name = 'Andreu';
-        $profession = 'Dev';
-        $age = 19;
-        $section = 'who';
-
-        $user = Session::get('name', 'usuario');
-
-        return view('website.who-we-are', [
-            'name' => $name,
-            'profession' => $profession,
-            'age' => $age,
-            'section' => $section,
-            'user' => $user
-        ]);
-    }
-
-    public function contact() {
-        return view('website.contact');
     }
 
     public function sendContact() {

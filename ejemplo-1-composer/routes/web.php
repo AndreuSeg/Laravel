@@ -25,9 +25,11 @@ Route::get('/introduccion-a-blade', [IntroductionController::class, 'index'])->n
 
 
 Route::name('website.')->prefix('/website')->group(function(){
+    Route::get('{section}', [WebsiteController::class, 'section'])->name('section');
+
     Route::get('home', [WebsiteController::class, 'home'])->name('home');
-    Route::post('personalize', [WebsiteController::class, 'personalize'])->name('personalize');
     Route::get('who-we-are', [WebsiteController::class, 'who'])->name('who');
     Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
+    Route::post('personalize', [WebsiteController::class, 'personalize'])->name('personalize');
     Route::post('contact', [WebsiteController::class, 'sendContact'])->name('sendContact');
 });
