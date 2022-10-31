@@ -22,7 +22,7 @@ class WebsiteController extends Controller
                 $data['time'] = $time;
             break;
             case 'who-we-are';
-                $name = 'Andreu';
+                $name = $user;
                 $profession = 'Dev';
                 $age = 19;
 
@@ -40,8 +40,14 @@ class WebsiteController extends Controller
         return redirect()->back();
     }
 
-    public function sendContact() {
-        return view('website.contact-results/contact-success');
-        return view('website/contact-results/contact-error');
+    public function sendContact(Request $request) {
+        $input = $request->only('name', 'email', 'message');
+
+        if ((!isset($input['name'])) || (!isset($input['email'])) || (!isset($input['message']))) {
+            return view('website/contact-results/contact-error');
+        }
+        else {
+            return view('website.contact-results/contact-success');
+        }
     }
 }

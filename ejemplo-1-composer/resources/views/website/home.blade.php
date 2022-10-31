@@ -3,14 +3,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ env('APP_NAME')}}</title>
+    <title>{{ env('APP_NAME')}} | Home</title>
 </head>
 <body>
     <header>
         <nav>
-            <a @if ($section == 'home') style="color: grey" @endif href="{{ route('website.home') }}">Home</a><br>
-            <a href="{{ route('website.who') }}">Quien soy</a><br>
-            <a href="{{ route('website.contact') }}">Contacto</a><br>
+            <a @if ($section == 'home') style="color: grey" @endif href="{{ route('website.section', ['section' => 'home']) }}">Home</a><br>
+            <a href="{{ route('website.section', ['section' => 'who-we-are']) }}">Quien soy</a><br>
+            <a href="{{ route('website.section', ['section' => 'contact']) }}">Contacto</a><br>
         </nav>
     </header>
     <h1>Hola {{ $user }}</h1>
