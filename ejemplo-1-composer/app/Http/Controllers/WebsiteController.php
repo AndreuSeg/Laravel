@@ -12,9 +12,12 @@ class WebsiteController extends Controller
         $date = date('d/m/y');
         $time = date('h:i');
 
+        $section = 'home';
+
         $user = Session::get('name', 'usuario');
 
         return view('website.home', [
+            'section' => $section,
             'date' => $date,
             'time' => $time,
             'user' => $user
@@ -28,7 +31,20 @@ class WebsiteController extends Controller
     }
 
     public function who() {
-        return view('website.who-we-are');
+        $name = 'Andreu';
+        $profession = 'Dev';
+        $age = 19;
+        $section = 'who';
+
+        $user = Session::get('name', 'usuario');
+
+        return view('website.who-we-are', [
+            'name' => $name,
+            'profession' => $profession,
+            'age' => $age,
+            'section' => $section,
+            'user' => $user
+        ]);
     }
 
     public function contact() {

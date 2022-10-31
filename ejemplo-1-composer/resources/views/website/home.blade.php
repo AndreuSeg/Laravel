@@ -8,7 +8,7 @@
 <body>
     <header>
         <nav>
-            <a href="{{ route('website.home') }}">Home</a><br>
+            <a @if ($section == 'home') style="color: grey" @endif href="{{ route('website.home') }}">Home</a><br>
             <a href="{{ route('website.who') }}">Quien soy</a><br>
             <a href="{{ route('website.contact') }}">Contacto</a><br>
         </nav>
@@ -16,7 +16,6 @@
     <h1>Hola {{ $user }}</h1>
     <h2>Bienvenido a mi primera pagina hecha con laravel 9</h2>
     <h2>Estas visitando la pagina a dia: {{ $date }} a la hora: {{ $time }}</h2>
-    <h4>La aplicación esta en entorno de "{{ env('APP_ENV')}}"</h4>
     @if ($user == 'usuario')
         <h4>Rellena tu nombre para personalizar tu pagina</h4>
     @endif
