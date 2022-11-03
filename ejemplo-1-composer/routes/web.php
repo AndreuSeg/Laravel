@@ -3,6 +3,7 @@
 use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\MyFirstController;
 use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\ControlDeErroresController;
 use Illuminate\Support\Facades\Route;
 use Psy\Command\WhereamiCommand;
 
@@ -33,3 +34,5 @@ Route::name('website.')->prefix('/website')->group(function(){
     Route::post('personalize', [WebsiteController::class, 'personalize'])->name('personalize');
     Route::post('contact', [WebsiteController::class, 'sendContact'])->name('sendContact');
 });
+
+Route::get('/errores', [ControlDeErroresController::class, 'index']);
