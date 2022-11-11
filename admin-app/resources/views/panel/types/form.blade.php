@@ -9,10 +9,7 @@
 </head>
 
 <body>
-    <a href="javascript:void(0)" onclick="document.getElementById('logout').submit()">Cerrar sesion</a>
-    <form action="{{ route('logout') }}" id="logout" method="POST">
-        @csrf
-    </form>
+    @include('panel.general.logout')
     <h3>Tipos de usuario /
         @if (!$id)
             Crear nuevo tipo de usuario

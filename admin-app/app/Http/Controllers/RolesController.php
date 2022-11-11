@@ -35,6 +35,35 @@ class RolesController extends Controller
         ]);
     }
 
+    public function get(Request $request) {
+
+        $roles = [
+            [
+                'id' => 1,
+                'label' => 'Normal',
+                'created_at' => '2022-11-11 11:46:00',
+                'updated_at' => '2022-11-11 12:46:00',
+            ],
+            [
+                'id' => 2,
+                'label' => 'Admin',
+                'created_at' => '2022-11-11 11:46:00',
+                'updated_at' => '2022-11-11 12:46:00',
+            ],
+            [
+                'id' => 3,
+                'label' => 'Superadmin',
+                'created_at' => '2022-11-11 11:46:00',
+                'updated_at' => '2022-11-11 12:46:00',
+            ]
+        ];
+
+        if ($request->isJson()) {
+            return response('json');
+        }
+        abort(400);
+    }
+
     public function create()
     {
         return view('panel.roles.form', [
