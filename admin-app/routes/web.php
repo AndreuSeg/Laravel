@@ -38,7 +38,6 @@ Route::middleware(['authentication'])->group(function() {
 
     Route::prefix('/roles')->name('roles.')->group(function() {
         Route::get('/', [RolesController::class, 'index'])->name('index');
-        Route::get('/get', [RolesController::class, 'get'])->name('get');
         Route::get('/create', [RolesController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [RolesController::class, 'edit'])->name('edit');
         Route::match(['POST', 'PUT', 'PATCH'],'/{id?}', [RolesController::class, 'save'])->name('save');

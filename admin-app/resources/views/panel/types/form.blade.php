@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('panel.general.base')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ env('APP_NAME') }} | Tipos</title>
-</head>
+@if (!$id)
+    @section('tittle', 'Crear tipos')
+@else
+    @section('tittle', 'Modificar tipos')
+@endif
 
-<body>
-    @include('panel.general.logout')
+@section('header')
+    <a href="{{ route('types.index') }}">Volver</a>
+@endsection
+
+@section('main')
     <h3>Tipos de usuario /
         @if (!$id)
             Crear nuevo tipo de usuario
@@ -17,7 +18,6 @@
             Modficar tipo de usuario
         @endif
     </h3>
-    <a href="{{ route('types.index') }}">Volver</a>
     <form action="{{ route('types.save', ['id' => $id]) }}" method="POST">
         @csrf
         @if ($id != null)
@@ -30,6 +30,4 @@
             <button>Guardar</button>
         </div>
     </form>
-</body>
-
-</html>
+@endsection

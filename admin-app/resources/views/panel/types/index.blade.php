@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('panel.general.base')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ env('APP_NAME') }} | Tipos</title>
-</head>
+@section('tittle', 'Tipos')
 
-<body>
-    @include('panel.general.logout')
+@section('main')
     <h3>Tipos de usuario</h3>
     <a href="{{ route('types.create') }}">Crear nuevo tipo</a>
     @include('panel.types._sections.table', ['types' => $types])
-</body>
-
-</html>
+    <br>
+    <br>
+    <a href="{{ route('roles.index') }}">Ir a roles</a>
+@endsection
