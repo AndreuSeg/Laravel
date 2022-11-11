@@ -29,7 +29,7 @@ Route::middleware(['authentication'])->group(function() {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::prefix('/users')->name('users.')->group(function() {
-        Route::get('/', [UsersController::class, 'index'])->name('users');
+        Route::get('/', [UsersController::class, 'index'])->name('index');
         Route::get('/create', [UsersController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('edit');
         Route::match(['POST', 'PUT', 'PATCH'],'/{id?}', [UsersController::class, 'save'])->name('save');
@@ -37,7 +37,7 @@ Route::middleware(['authentication'])->group(function() {
     });
 
     Route::prefix('/roles')->name('roles.')->group(function() {
-        Route::get('/', [RolesController::class, 'index'])->name('users');
+        Route::get('/', [RolesController::class, 'index'])->name('index');
         Route::get('/create', [RolesController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [RolesController::class, 'edit'])->name('edit');
         Route::match(['POST', 'PUT', 'PATCH'],'/{id?}', [RolesController::class, 'save'])->name('save');
@@ -45,7 +45,7 @@ Route::middleware(['authentication'])->group(function() {
     });
 
     Route::prefix('/types')->name('types.')->group(function() {
-        Route::get('/', [TypesController::class, 'index'])->name('users');
+        Route::get('/', [TypesController::class, 'index'])->name('index');
         Route::get('/create', [TypesController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [TypesController::class, 'edit'])->name('edit');
         Route::match(['POST', 'PUT', 'PATCH'],'/{id?}', [TypesController::class, 'save'])->name('save');
