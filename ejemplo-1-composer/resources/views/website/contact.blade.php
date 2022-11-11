@@ -18,10 +18,10 @@
     </header>
     <h1>Contacta conmigo</h1>
     @if (Session::has('success'))
-        <p style="color: red">{{ Session::get('success') }}</p>
+        <p style="color: green">{{ Session::get('success') }}</p>
     @endif
     @if (Session::has('error'))
-        <p style="color: green">{{ Session::get('error') }}</p>
+        <p style="color: red">{{ Session::get('error') }}</p>
     @endif
     <form action="{{ route('website.sendContact') }}" method="POST">
         @csrf

@@ -44,11 +44,11 @@ class WebsiteController extends Controller
         $input = $request->only('name', 'email', 'message');
 
         if ((!isset($input['name'])) || (!isset($input['email'])) || (!isset($input['message']))) {
-            Session::flash('success', 'Formulario enviado correectamente');
+            Session::flash('error', 'El formulario no se ha procesado correctamente');
             return redirect()->back();
         }
         else {
-            Session::flash('error', 'El formulario no se ha procesado correctamente');
+            Session::flash('success', 'Formulario enviado correectamente');
             return redirect()->back();
         }
     }
