@@ -1,4 +1,4 @@
-<table border="1" cellpadding="10" cellspacing="0">
+<table class="table table--responsive mt-3">
     <thead>
         <tr>
             <th>ID</th>

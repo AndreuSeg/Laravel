@@ -7,6 +7,6 @@
     <title>{{ env('APP_NAME')}} | Panel</title>
 </head>
 <body>
-    @include('panel.general.logout')
+    @include('panel.general.navigation')
 </body>
 </html>

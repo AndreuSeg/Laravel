@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class TypesController extends Controller
 {
@@ -60,13 +61,24 @@ class TypesController extends Controller
 
     public function save(Request $request, $id = null)
     {
-        $input = $request->input();
-        print_r($input);
-        print_r($id);
-    }
+        if (($request->isMethod('POST') && $id != null) || ($request->isMethod('PUT') && $id == null) || ($request->isMethod('PATCH') && $id == null)) {
+            abort(403);
+        }
 
+        if ($request->isMethod('POST')) {
+            Session::flash('msg', 'El tipo se ha creado');
+        };
+
+        if ($request->isMethod('PUT') || $request->isMethod('PATCH')) {
+            Session::flash('msg', 'El tipo se ha modificado');
+        }
+
+        $input = $request->input();
+        return redirect()->route('types.index');
+    }
     public function delete($id)
     {
-        print_r($id);
+        Session::flash('msg', 'El tipo se ha eliminado');
+        return redirect()->route('types.index');
     }
 }

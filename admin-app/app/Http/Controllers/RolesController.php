@@ -79,6 +79,7 @@ class RolesController extends Controller
 
     public function delete($id)
     {
-        print_r($id);
+        Session::flash('msg', 'El rol se ha eliminado');
+        return redirect()->route('roles.index');
     }
 }

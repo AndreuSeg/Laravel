@@ -7,12 +7,12 @@
         {{-- <a href="{{ route('roles.edit', ['id' => $r['id']]) }}">Editar</a> --}}
         <form action="{{ route('roles.edit', ['id' => $role['id']]) }} " method="GET">
             @csrf
-            <button style="width: 100%">Editar</button>
+            <button class="btn btn-success mb-1" style="width: 100%">Editar</button>
         </form>
-        <form action="{{ route('roles.delete', ['id' => $role['id']]) }}" method="POST">
+        <form onsubmit="return confirm('¿Seguro que lo quieres eliminar?')" action="{{ route('roles.delete', ['id' => $role['id']]) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button style="width: 100%">Eliminar</button>
+            <button class="btn btn-danger mt-1" style="width: 100%">Eliminar</button>
         </form>
     </td>
 </tr>
