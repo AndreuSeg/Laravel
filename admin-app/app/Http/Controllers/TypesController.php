@@ -76,6 +76,7 @@ class TypesController extends Controller
         $input = $request->input();
         return redirect()->route('types.index');
     }
+
     public function delete($id)
     {
         Session::flash('msg', 'El tipo se ha eliminado');

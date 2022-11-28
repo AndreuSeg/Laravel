@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::directive('rightnow', function($time) {
+            $date = date('d/m/Y', $time);
+            echo $date;
+        });
+
+        Blade::if('mailer', function($input) {
+            $configuredMailer = config('mail.default');
+            return $input == $configuredMailer;
+        });
     }
 }
