@@ -1,6 +1,6 @@
 <tr>
     <td>{{ $user['id'] }}</td>
-    <td>{{ $user['label'] }}</td>
+    <td>{{ $user['name'] }}</td>
     <td>{{ $user['email'] }}</td>
     <td>{{ date('d/m/Y'), strtotime($user['created_at']) }}</td>
     <td>{{ date('d/m/Y'), strtotime($user['updated_at']) }}</td>

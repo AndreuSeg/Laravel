@@ -3,34 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
+use App\Models\User;
 
 class UsersController extends Controller
 {
     public function index()
     {
-        $users = [
-            [
-                'id' => 1,
-                'label' => 'Andreu',
-                'email' => 'andreu@g',
-                'created_at' => '2022-11-11 11:46:00',
-                'updated_at' => '2022-11-11 12:46:00',
-            ],
-            [
-                'id' => 2,
-                'label' => 'Arnau',
-                'email' => 'arnau@g',
-                'created_at' => '2022-11-11 11:46:00',
-                'updated_at' => '2022-11-11 12:46:00',
-            ],
-            [
-                'id' => 3,
-                'label' => 'Miquel',
-                'email' => 'miquel@g',
-                'created_at' => '2022-11-11 11:46:00',
-                'updated_at' => '2022-11-11 12:46:00',
-            ]
-        ];
+        $users = User::get()->toArray();
 
         return view('panel.users.index', [
             'users' => $users

@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Label</th>
+            <th>Nombre</th>
             <th>Email</th>
             <th>Fecha de creación</th>
             <th>Fecha de actualización</th>

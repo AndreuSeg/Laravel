@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -13,12 +14,17 @@ class LoginController extends Controller
 
     public function login(Request $request){
 
-        $input = $request->only('user', 'password');
-        $access = $this->_checCredentials($input);
+        // Solo conseguimos el email y la password
+        $input = $request->only('email', 'password');
+        // Comprovamos credenciales
+        $access = $this->_checkCredentials($input);
+        // Mostrar errror en caso de credenciales invalidas
         if (!$access) {
             Session::flash('error', 'Credenciales invalidas');
             return redirect()->back();
         }
+
+        // Introducimos dentro de user los inputs
         Session::put('user', $input);
         return redirect()->route('home');
     }
@@ -28,16 +34,14 @@ class LoginController extends Controller
         return redirect()->route('home');
     }
 
-    private function _checCredentials($input) {
-        $credentials = [
-            'user' => 'root',
-            'password' => 'root'
-        ];
+    // Funcion privada para comprovar las credenciales del usaurio
+    private function _checkCredentials($input) {
 
-        if (!isset($input['user']) || !isset($input['password'])) {
+        if (!isset($input['email']) || !isset($input['password'])) {
             return false;
         }
-        $access = $credentials['user'] == $input['user'] && $credentials['password'] == $input['password'];
+
+        $access = $input;
         return $access;
     }
 }

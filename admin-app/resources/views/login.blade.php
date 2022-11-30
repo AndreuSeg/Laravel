@@ -10,8 +10,8 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="user">Usuario</label><br>
-                        <input class="form-control" type="text" name="user" placeholder="Intorduce tu usuario aquí">
+                        <label for="email">Correo</label><br>
+                        <input class="form-control" type="email" name="email" placeholder="Introduce tu correo electronico aquí">
                     </div>
                     <div class="form-group">
                         <label for="password">Contraseña</label><br>
