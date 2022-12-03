@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\TypesController;
+use App\Http\Controllers\DatabaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/example-database', [DatabaseController::class, 'index']);
+
 Route::view('/example-home', 'welcome');
 
 Route::redirect('/', '/home');
