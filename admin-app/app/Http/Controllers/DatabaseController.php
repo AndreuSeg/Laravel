@@ -79,5 +79,17 @@ class DatabaseController extends Controller
         // ModelTable::create([
         //     'name' => 'Example2'
         // ]);
+
+        /**
+         * Para restaurar la base de datos se tiene que hacer una consulta:
+         * * User::whereNotNull('id)->restore();
+         * Restauras todos los registros que el campo id no este nulo
+         */
+
+        /**
+         * Para que te devuelva todos los registros que estan borrados con el softdelates().
+         * Tienes que hacer una consulta
+         * * User::withTrashed()->get();
+         */
     }
 }
