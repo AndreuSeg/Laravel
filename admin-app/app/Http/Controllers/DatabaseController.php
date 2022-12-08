@@ -59,8 +59,6 @@ class DatabaseController extends Controller
         //     'password' => $password
         // ]);
 
-
-
         // Eloquent
         /**
          * Eloquent es un ORM. Y trabaja con modelos
@@ -90,6 +88,17 @@ class DatabaseController extends Controller
          * Para que te devuelva todos los registros que estan borrados con el softdelates().
          * Tienes que hacer una consulta
          * * User::withTrashed()->get();
+         */
+
+        $user = User::Where('id', 1)->with(['role'])->get();
+        print_r($user);
+        /**
+         * Para relacionar con eloquent tienes que poner un with()
+         * * ->with(['role])
+         * Pero en el modelo tienes que declararlo asi:
+         * * public function role() {
+         * * return $this->BelongsTo(UserRole::class);
+         * * }
          */
     }
 }
