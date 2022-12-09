@@ -29,8 +29,8 @@
                     @endif
                     <div class="input">
                         <div class="form-group">
-                            <label for="label">Nombre</label>
-                            <input class="form-control" type="text" name="label" value="{{ $record != null ? $record['label'] : '' }}">
+                            <label for="name">Nombre</label>
+                            <input class="form-control" type="text" name="name" value="{{ $record != null ? $record['name'] : '' }}">
                         </div>
                         <button class="btn btn-success">Guardar</button>
                     </div>

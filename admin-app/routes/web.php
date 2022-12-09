@@ -6,6 +6,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\TypesController;
 use App\Http\Controllers\DatabaseController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +28,11 @@ Route::redirect('/', '/home');
 
 Route::get('/login', [LoginController::class, 'form'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::prefix('/blog')->name('blog.')->group(function() {
+    Route::get('/', [PostController::class, 'index'])->name('index');
+});
 
 Route::middleware(['authentication'])->group(function() {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -38,7 +42,7 @@ Route::middleware(['authentication'])->group(function() {
         Route::get('/create', [UsersController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('edit');
         Route::match(['POST', 'PUT', 'PATCH'],'/{id?}', [UsersController::class, 'save'])->name('save');
-        Route::delete('/{id}', [UserController::class, 'delete'])->name('delete');
+        Route::delete('/{id}', [UsersController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('/roles')->name('roles.')->group(function() {

@@ -28,13 +28,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         // Priero se recuperan los usuarios
-        $record = [
-            'id' => 1,
-            'label' => 'Andreu',
-            'email' => 'andreu@g',
-            'created_at' => '2022-11-11 11:46:00',
-            'updated_at' => '2022-11-11 12:46:00',
-        ];
+        $record = User::find($id)->toArray();
 
         return view('panel.users.form', [
             'id' => $id,
@@ -48,21 +42,27 @@ class UsersController extends Controller
             abort(403);
         }
 
+        $input = $request->except('_token');
+
         if ($request->isMethod('POST')) {
             Session::flash('msg', 'El usuario se ha creado');
         };
-
         if ($request->isMethod('PUT') || $request->isMethod('PATCH')) {
             Session::flash('msg', 'El usuario se ha modificado');
         }
 
-        $input = $request->input();
+        User::updateOrCreate([
+            'id' => $id,
+
+        ], $input);
         return redirect()->route('users.index');
     }
 
     public function delete($id)
     {
         Session::flash('msg', 'El usuario se ha eliminado');
+        $user = User::where('id', $id)->firstOrFail();
+        $user->delete();
         return redirect()->route('users.index');
     }
 }
