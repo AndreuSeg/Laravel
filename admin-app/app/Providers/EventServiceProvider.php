@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Events\PostReadedEvent;
+use App\Listeners\PostReaderListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,13 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        /**
+         * En el eventServiceProvider tienes que poner el evento
+         * y el listener dentro del evento
+         */
+        PostReadedEvent::class => [
+            PostReaderListener::class
         ],
     ];
 

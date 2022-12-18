@@ -18,11 +18,19 @@ class Post extends Model
         'content',
     ];
 
+    protected $hidden = [
+        'user_id',
+    ];
+
     public function category() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function author() {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function getUserAndCategoryAttribute() {
+        $this->attributes['user_and_category'] = $this->user_id. '-' .$this->category_id;
     }
 }

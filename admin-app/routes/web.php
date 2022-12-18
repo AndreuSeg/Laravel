@@ -32,6 +32,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::prefix('/blog')->name('blog.')->group(function() {
     Route::get('/', [PostController::class, 'index'])->name('index');
+    Route::get('/feed/{format}', [PostController::class, 'jsonFeed'])->name('jsonFeed');
 });
 
 Route::middleware(['authentication'])->group(function() {
