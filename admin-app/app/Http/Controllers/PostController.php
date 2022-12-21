@@ -9,13 +9,23 @@ use App\Events\PostReadedEvent;
 class PostController extends Controller
 {
     public function index() {
-        $latestPost = Post::orderBy('created_at', 'desc')->with('category', 'author')->limit(10)->get();
+        $latestPost = Post::where('id', 1)->get();
+        print_r($latestPost);
 
         /**
          * Lanazamos el evento y se puede comprobar en el log de laravel
          */
-        event(new PostReadedEvent($latestPost));
-        die();
+        // event(new PostReadedEvent($latestPost));
+        // die();
+
+        // Simulamos la creacion de un Post
+        // Post::create([
+        //     'user_id' => 1,
+        //     'category_id' => 1,
+        //     'tittle' => '',
+        //     'slug' => '',
+        //     'content' => '',
+        // ]);
 
         return view('blog.index', [
             'posts' => $latestPost

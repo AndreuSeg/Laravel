@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Events\PostReadedEvent;
+use App\Events\SaveAuthorOnCreatePostEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,6 +22,21 @@ class Post extends Model
 
     protected $hidden = [
         'user_id',
+    ];
+
+    protected $dispatchesEvents = [
+        // 'retrived' => SaveAuthorOnCreatePostEvent::class,
+        'creating' => SaveAuthorOnCreatePostEvent::class,
+        // 'created' => SaveAuthorOnCreatePostEvent::class,
+        // 'updating' => SaveAuthorOnCreatePostEvent::class,
+        // 'updated' => SaveAuthorOnCreatePostEvent::class,
+        // 'saving' => SaveAuthorOnCreatePostEvent::class,
+        // 'saved' => SaveAuthorOnCreatePostEvent::class,
+        // 'deleting' => SaveAuthorOnCreatePostEvent::class,
+        // 'deleted' => SaveAuthorOnCreatePostEvent::class,
+        // 'restoring' => SaveAuthorOnCreatePostEvent::class,
+        // 'restored' => SaveAuthorOnCreatePostEvent::class,
+        // 'replicating' => SaveAuthorOnCreatePostEvent::class,
     ];
 
     public function category() {
